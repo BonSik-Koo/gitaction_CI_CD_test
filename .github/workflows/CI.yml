@@ -10,8 +10,7 @@ on:
       - develop
       - feat/*
 
-permissions:
-  contents: write-all
+permissions: write-all
 
 # 실행할 작업들
 jobs:

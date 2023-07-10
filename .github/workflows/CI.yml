@@ -15,8 +15,8 @@ permissions: write-all
 # 실행할 작업들
 jobs:
   CI:
-    #NCP Server 스펙을 최대한 맞추기 위해서
     runs-on: ubuntu-latest
+    #Test를 위한 DB setting
     services:
       mysql:
         image: mysql
@@ -41,16 +41,6 @@ jobs:
       - name: Grant Execute permission for gradlew
         run: chmod +x gradlew
         shell: bash
-
-
-      - name: application-test.yml
-        run: |
-          cd ./src/main/resources
-          touch ./application-test.yml
-          echo "${{ secrets.PROPERTIES_TEST }}" > ./application-test.yml
-        shell: bash
-
-
 
       #테스트 하지 않고 빌드를 진행
       - name: Build with Gradle

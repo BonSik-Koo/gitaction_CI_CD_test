@@ -17,15 +17,15 @@ jobs:
   CI:
     #NCP Server 스펙을 최대한 맞추기 위해서
     runs-on: ubuntu-latest
-    services:
-      mysql:
-        image: mysql
-        env:
-          MYSQL_DATABASE: test
-          MYSQL_ROOT_PASSWORD: 1234
-        ports:
-          - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+#    services:
+#      mysql:
+#        image: mysql
+#        env:
+#          MYSQL_DATABASE: test
+#          MYSQL_ROOT_PASSWORD: 1234
+#        ports:
+#          - 3306:3306
+#        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       #JDK setting
@@ -52,6 +52,7 @@ jobs:
         run: ./gradlew clean test
         shell: bash
 
+      #테스트 결과 출력
       - name: Publish Unit Test Result
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: ${{ always() }}

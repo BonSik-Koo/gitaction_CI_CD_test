@@ -34,9 +34,9 @@ jobs:
         uses: samin/mysql-action@v1
         with:
           character set server: 'utf8'
-          mysql database: rnqhstlr
-          mysql user: root
-          mysql password: 1234
+          mysql database: 'rnqhstlr'
+          mysql user: 'root'
+          mysql password: '1234'
 
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew

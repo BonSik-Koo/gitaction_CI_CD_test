@@ -28,15 +28,22 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      #테스트 application-test.yml 파일 생성
+      - name: create application-test.yml
+        run: |
+          cd ./src/main/resources
+          touch ./application-test.yml
+          echo "${{ secrets.PROPERTIES_TEST }}" > ./application-test.yml
+        shell: bash
+
       #테스트 진행시 사용할 테스트 DB 세팅
       - name: Setup MySQL
         uses: samin/mysql-action@v1
         with:
-          host port: 3306
-          container port: 3306
           character set server: 'utf8'
-          mysql database: 'rnqhstlr'
-          mysql root password: ${{ secrets.TEST_DB_PASSWORD }}
+          mysql database: 'test'
+          mysql user: 'test'
+          mysql password: ${{ secrets.TEST_DB_PASSWORD }}
 
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew
@@ -49,9 +56,9 @@ jobs:
         shell: bash
 
       #테스트 진행
-#      - name: Test with Gradle
-#        run: ./gradlew test
-#        shell: bash
+      - name: Test with Gradle
+        run: SPRING_PROFILES_ACTIVE=[test] ./gradlew test
+        shell: bash
 
       #테스트 Result 보기
       - name: Publish Unit Test Results

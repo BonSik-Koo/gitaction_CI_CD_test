@@ -37,7 +37,7 @@ jobs:
           container port: 3306
           character set server: 'utf8'
           mysql database: 'rnqhstlr'
-          mysql root password: 1234
+          mysql root password: ${{ secrets.TEST_DB_PASSWORD }}
 
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew

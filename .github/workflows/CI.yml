@@ -4,20 +4,28 @@ name: CI
 on:
   push:
     branches:
-      - 'feat/*'
+      - feat/*
   pull_request:
     branches:
-      - 'develop'
-      - 'feat/*'
+      - develop
+      - feat/*
 
-permissions:
-  contents: read
+permissions: write-all
 
 # 실행할 작업들
 jobs:
-  CI-CD:
-    #NCP Server 스펙을 최대한 맞추기 위해서
-    runs-on: ubuntu-18.04
+  CI:
+    runs-on: ubuntu-latest
+    #build test를 위한 DB setting
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_DATABASE: test
+          MYSQL_ROOT_PASSWORD: 1234
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       #JDK setting
@@ -39,13 +47,13 @@ jobs:
         run: ./gradlew build -x test
         shell: bash
 
-      #local 환경에서 테스트 진행
+      #테스트 진행
       - name: Test with Gradle
-        run: SPRING_PROFILES_ACTIVE=[local] ./gradlew clean test
+        run: SPRING_PROFILES_ACTIVE=[test] ./gradlew clean test
         shell: bash
 
-      # PR에서 테스트 진행시 오류가 발생할 경우 표시
-      - name: Publish Test Result
+      #테스트 결과 출력
+      - name: Publish Unit Test Result
         uses: EnricoMi/publish-unit-test-result-action@v1
         if: ${{ always() }}
         with:

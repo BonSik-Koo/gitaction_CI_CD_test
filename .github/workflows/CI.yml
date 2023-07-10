@@ -29,14 +29,15 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      #local 환경에서 테스트 진행시 사용할 local DB
+      #테스트 진행시 사용할 테스트 DB 세팅
       - name: Setup MySQL
         uses: samin/mysql-action@v1
         with:
+          host port: 3306
+          container port: 3306
           character set server: 'utf8'
           mysql database: 'rnqhstlr'
-          mysql user: 'root'
-          mysql password: '1234'
+          mysql root password: 1234
 
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew
@@ -48,7 +49,14 @@ jobs:
         run: ./gradlew build -x test
         shell: bash
 
-      #local 환경에서 테스트 진행
+      #테스트 진행
       - name: Test with Gradle
         run: ./gradlew clean test
         shell: bash
+
+      #테스트 Result 보기
+      - name: Publish Unit Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: ${{ always() }}  # 테스트가 실패하여도 Report를 보기 위해 `always`로 설정
+        with:
+          files: build/test-results/**/*.xml

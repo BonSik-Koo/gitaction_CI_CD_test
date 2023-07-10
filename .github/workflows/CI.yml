@@ -37,23 +37,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-#      #테스트 진행시 사용할 테스트 DB 세팅
-#      - name: Setup MySQL
-#        uses: samin/mysql-action@v1
-#        with:
-#          character set server: 'utf8'
-#          mysql database: 'test'
-#          mysql user: 'test'
-#          mysql password: ${{ secrets.TEST_DB_PASSWORD }}
-
-#      #테스트 application-test.yml 파일 생성
-#      - name: create application-test.yml
-#        run: |
-#          cd ./src/main/resources
-#          touch ./application-test.yml
-#          echo "${{ secrets.PROPERTIES_TEST }}" >> ./application-test.yml
-#        shell: bash
-
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew
         run: chmod +x gradlew

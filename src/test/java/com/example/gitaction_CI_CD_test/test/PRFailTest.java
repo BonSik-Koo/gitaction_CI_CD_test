@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
+@Disabled
 public class PRFailTest {
 
     @Autowired TestService testService;

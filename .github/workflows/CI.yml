@@ -17,7 +17,7 @@ permissions:
 jobs:
   CI:
     #NCP Server 스펙을 최대한 맞추기 위해서
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     steps:
       #JDK setting

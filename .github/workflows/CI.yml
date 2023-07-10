@@ -4,18 +4,18 @@ name: CI
 on:
   push:
     branches:
-      - 'feat/*'
+      - feat/*
   pull_request:
     branches:
-      - 'develop'
-      - 'feat/*'
+      - develop
+      - feat/*
 
 permissions:
   contents: read
 
 # 실행할 작업들
 jobs:
-  CI-CD:
+  CI:
     #NCP Server 스펙을 최대한 맞추기 위해서
     runs-on: ubuntu-18.04
 

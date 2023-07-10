@@ -41,7 +41,7 @@ jobs:
 
       #local 환경에서 테스트 진행
       - name: Test with Gradle
-        run: SPRING_PROFILES_ACTIVE=[local] ./gradlew clean test
+        run: ./gradlew clean test
         shell: bash
 
       # PR에서 테스트 진행시 오류가 발생할 경우 표시

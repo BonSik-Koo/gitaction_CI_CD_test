@@ -81,7 +81,7 @@ jobs:
       if: contains(github.ref, 'develop')
       run: |
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -f Dokerfile-dev -t ${{ secrets.DOCKER_REPO }}/zzanz-dev .
+        docker build -f Dockerfile-dev -t ${{ secrets.DOCKER_REPO }}/zzanz-dev .
         docker push ${{ secrets.DOCKER_REPO }}/zzanz-dev
 
 #    - name: Docker build & push to prod # 운영 서버용(prod) Docker build & push

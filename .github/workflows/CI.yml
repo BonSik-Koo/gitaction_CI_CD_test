@@ -16,7 +16,7 @@ permissions: write-all
 jobs:
   CI:
     runs-on: ubuntu-latest
-    #Test를 위한 DB setting
+    #build test를 위한 DB setting
     services:
       mysql:
         image: mysql

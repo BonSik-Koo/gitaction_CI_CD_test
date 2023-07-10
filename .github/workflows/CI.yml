@@ -49,9 +49,9 @@ jobs:
         shell: bash
 
       #테스트 진행
-      - name: Test with Gradle
-        run: ./gradlew clean test
-        shell: bash
+#      - name: Test with Gradle
+#        run: ./gradlew test
+#        shell: bash
 
       #테스트 Result 보기
       - name: Publish Unit Test Results

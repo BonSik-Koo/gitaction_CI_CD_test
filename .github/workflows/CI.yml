@@ -33,14 +33,13 @@ jobs:
         run: |
           cd ./src/main/resources
           touch ./application-test.yml
-          echo "${{ secrets.PROPERTIES_TEST }}" > ./application-test.yml
+          echo "${{ secrets.PROPERTIES_TEST }}" >> ./application-test.yml
         shell: bash
 
       #테스트 진행시 사용할 테스트 DB 세팅
       - name: Setup MySQL
-        uses: samin/mysql-action@v1
+        uses: mirromutth/mysql-action@v1.1
         with:
-          character set server: 'utf8'
           mysql database: 'test'
           mysql user: 'test'
           mysql password: ${{ secrets.TEST_DB_PASSWORD }}
@@ -57,7 +56,7 @@ jobs:
 
       #테스트 진행
       - name: Test with Gradle
-        run: SPRING_PROFILES_ACTIVE=[test] ./gradlew test
+        run: SPRING_PROFILES_ACTIVE=[test] ./gradlew clean test
         shell: bash
 
       #테스트 Result 보기

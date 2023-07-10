@@ -8,13 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 @Transactional
-@Disabled
 public class PRFailTest {
 
     @Autowired TestService testService;
 
     @Test
-    @Disabled
     public void failTest(){
         final Long no = 100L;
         testService.findTest(no);

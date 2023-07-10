@@ -17,7 +17,6 @@ jobs:
   CI:
     #NCP Server 스펙을 최대한 맞추기 위해서
     runs-on: ubuntu-latest
-
     services:
       mysql:
         image: mysql

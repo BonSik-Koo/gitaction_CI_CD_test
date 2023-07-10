@@ -17,6 +17,7 @@ jobs:
   CI:
     #NCP Server 스펙을 최대한 맞추기 위해서
     runs-on: ubuntu-latest
+
     services:
       mysql:
         image: mysql
@@ -46,13 +47,13 @@ jobs:
 #          mysql user: 'test'
 #          mysql password: ${{ secrets.TEST_DB_PASSWORD }}
 
-      #테스트 application-test.yml 파일 생성
-      - name: create application-test.yml
-        run: |
-          cd ./src/main/resources
-          touch ./application-test.yml
-          echo "${{ secrets.PROPERTIES_TEST }}" >> ./application-test.yml
-        shell: bash
+#      #테스트 application-test.yml 파일 생성
+#      - name: create application-test.yml
+#        run: |
+#          cd ./src/main/resources
+#          touch ./application-test.yml
+#          echo "${{ secrets.PROPERTIES_TEST }}" >> ./application-test.yml
+#        shell: bash
 
       # Gradle 권한 부여
       - name: Grant Execute permission for gradlew
@@ -66,5 +67,5 @@ jobs:
 
       #테스트 진행
       - name: Test with Gradle
-        run: SPRING_PROFILES_ACTIVE=[test] ./gradlew clean test
+        run: ./gradlew clean test
         shell: bash

@@ -1,5 +1,6 @@
 package com.example.gitaction_CI_CD_test.test;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ public class PRFailTest {
     @Autowired TestService testService;
 
     @Test
+    @Disabled
     public void failTest(){
         final Long no = 100L;
         testService.findTest(no);

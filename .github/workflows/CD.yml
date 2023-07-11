@@ -60,11 +60,6 @@ jobs:
       run: chmod +x gradlew
       shell: bash
 
-    # gradlew build(test 없이)
-    - name: Build with Gradle
-      run: ./gradlew build -x test
-      shell: bash
-
     # develop, main branch Gradle test 진행
     - name: Develop Test # develop branch test
       if: contains(github.ref, 'develop')
@@ -75,6 +70,11 @@ jobs:
 #      if: contains(github.ref, 'main')
 #      run: SPRING_PROFILES_ACTIVE=[prod] ./gradlew clean test
 #      shell: bash
+
+    # gradlew build(test 없이)
+    - name: Build with Gradle
+      run: ./gradlew build -x test
+      shell: bash
 
     # docker build & push
     - name: Docker build & push to dev # 개발 서버용(develop) Docker build & push

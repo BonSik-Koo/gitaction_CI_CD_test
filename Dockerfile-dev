@@ -1,8 +1,8 @@
 FROM openjdk:14-jdk-slim
 EXPOSE 8080
-COPY build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar app.jar
-ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "app.jar"]
-
-#ARG JAR_FILE= build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar
-#COPY ${JAR_FILE} app.jar
+#COPY build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar app.jar
 #ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "app.jar"]
+
+ARG JAR_FILE=build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/app.jar"]

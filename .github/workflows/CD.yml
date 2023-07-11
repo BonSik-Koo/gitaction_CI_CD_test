@@ -108,6 +108,7 @@ jobs:
           docker-compose up -d
           docker image prune -f
 
+
     # deploy to prod
 #    - name: Deploy to prod
 #      uses: appleboy/ssh-action@master

@@ -3,6 +3,6 @@ EXPOSE 8080
 #COPY build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar app.jar
 #ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "app.jar"]
 
-ARG JAR_FILE=build/libs/gitaction_CI_CD_test-0.0.1-SNAPSHOT.jar
+ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 ENTRYPOINT ["java", "-jar", "-Dspring.profiles.active=dev", "/app.jar"]
